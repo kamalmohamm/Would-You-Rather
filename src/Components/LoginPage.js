@@ -2,14 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 import { withRouter } from "react-router-dom";
+import users from "../reducers/users";
 
 class LoginPage extends Component {
   state = {
     text: "",
   };
+  
   handleChange = (e) => {
     const text = e.target.value;
-
+console.log("selected Value ", text)
     this.setState(() => ({
       text,
     }));
@@ -34,16 +36,17 @@ class LoginPage extends Component {
       <div className="wrapper">
         <form className="login" onSubmit={this.handleSubmit}>
           <p className="title">Log in</p>
-          <input
-            type="text"
-            placeholder="Username"
-            onChange={this.handleChange}
-          />
+          <label >Choose a user:</label>
+            <select id="users" name="users" onChange={this.handleChange} >
+              {this.props.usersIds.map(user => <option value={user} key={user}>{user}</option>)
+
+              }
+            
+            </select>
+
           <button type="submit" disabled={this.state.text === ""}>
             <span>Log in</span>
           </button>
-          <br />
-          Hint : id like "sarahedo"
         </form>
       </div>
     );
