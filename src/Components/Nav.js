@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
-import { setAuthedUser } from "../actions/authedUser";
+import { setAuthUser } from "../redux/actions";
 import { withRouter } from "react-router-dom";
 
 class Nav extends Component {
   handleLogout = (e) => {
     e.preventDefault();
-    this.props.dispatch(setAuthedUser(null));
+    this.props.dispatch(setAuthUser({ id: null }));
     this.props.history.push("/");
   };
 

@@ -1,12 +1,11 @@
 import { getInitialData } from "../Data/helper";
-import { receiveUsers } from "../actions/users";
-import { receiveQuestions } from "../actions/questions";
+import { receiveUsers, receiveQuestions } from "../redux/actions";
 
 export function handleInitialData() {
   return (dispatch) => {
     return getInitialData().then(({ users, questions }) => {
-      dispatch(receiveUsers(users));
-      dispatch(receiveQuestions(questions));
+      dispatch(receiveUsers({ users }));
+      dispatch(receiveQuestions({ questions }));
     });
   };
 }

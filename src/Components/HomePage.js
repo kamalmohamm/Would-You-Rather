@@ -12,6 +12,7 @@ class HomePage extends Component {
   };
   componentDidMount() {
     const { authedUser } = this.props;
+    console.log("authedUser", authedUser);
     !authedUser && this.props.history.push("/");
   }
   filterQ = () => {

@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQ } from "../Data/_DATA";
 import { formatDate } from "../Data/helper";
-import { handleAddAnswer } from "../actions/questions";
-import { handleAddUserAnswer } from "../actions/users";
 import LoginPage from "./LoginPage";
 import NotFound from "./NotFound";
+import { addAnswer, addUserAnswer } from "../redux/actions";
 /*<img src={avatar} alt={`Avatar of ${author}`} className="avatar" />
         <div className="tweet-info">
           <div>
@@ -19,10 +18,13 @@ import NotFound from "./NotFound";
         </div>
         */
 function isAnswered(question, authedUser) {
-  return [...question.optionOne.votes, ...question.optionTwo.votes].reduce(
-    (acc, userId) => acc || userId === authedUser,
-    false
-  );
+  console.log("question, authedUser", question, authedUser);
+  const isAnswered = [
+    ...question.optionOne.votes,
+    ...question.optionTwo.votes,
+  ].reduce((acc, userId) => acc || userId === authedUser, false);
+  console.log("isAnswered", isAnswered);
+  return isAnswered;
 }
 function scores(question, authedUser) {
   const op1Votes = question.optionOne.votes.length;
@@ -50,14 +52,14 @@ class QuestionPage extends Component {
     const { dispatch, questionA, authedUser, users } = this.props;
 
     dispatch(
-      handleAddAnswer({
+      addAnswer({
         question: questionA,
         authedUser,
         answer: "op1",
       })
     );
     dispatch(
-      handleAddUserAnswer({
+      addUserAnswer({
         question: questionA,
         authedUser,
         answer: "optionOne",
@@ -70,7 +72,7 @@ class QuestionPage extends Component {
     const { dispatch, questionA, authedUser } = this.props;
 
     dispatch(
-      handleAddAnswer({
+      addAnswer({
         question: questionA,
         authedUser,
         answer: "op2",
