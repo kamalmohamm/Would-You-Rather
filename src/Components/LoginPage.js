@@ -19,12 +19,12 @@ class LoginPage extends Component {
     e.preventDefault();
 
     const { text } = this.state;
-    const { dispatch, usersIds } = this.props;
+    const { dispatch, usersIds, loc } = this.props;
     if (usersIds.find((x) => x === text)) {
       console.log("dispatch setAuthUser");
       dispatch(setAuthUser({ id: text }));
       console.log("did dispatch setAuthUser");
-      this.props.history.push("/homepage");
+      this.props.history.push(`/${loc}`);
     } else alert("No Such user");
 
     this.setState(() => ({

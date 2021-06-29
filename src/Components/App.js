@@ -24,7 +24,7 @@ class App extends Component {
             <Nav />
             <Switch>
               <Route path="/homepage" exact component={HomePage} />
-              <Route path="/newQuestion" exact component={NewQuestion} />
+              <Route path="/add" exact component={NewQuestion} />
               <Route path="/leaderboard" exact component={LeaderBoard} />
 
               <Route path="/question/:id" exact component={QuestionPage} />

@@ -74,7 +74,7 @@ class NewQuestion extends Component {
         </form>
       </div>
     ) : (
-      <LoginPage loc={"newQuestion"} />
+      <LoginPage loc={"add"} />
     );
   }
 }
