@@ -24,7 +24,9 @@ class LoginPage extends Component {
       console.log("dispatch setAuthUser");
       dispatch(setAuthUser({ id: text }));
       console.log("did dispatch setAuthUser");
-      this.props.history.push(`/${loc}`);
+      loc
+        ? this.props.history.push(`/${loc}`)
+        : this.props.history.push(`/homepage`);
     } else alert("No Such user");
 
     this.setState(() => ({
