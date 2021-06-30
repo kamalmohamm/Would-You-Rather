@@ -167,7 +167,7 @@ class QuestionPage extends Component {
           ) : null}
         </div>
       ) : (
-        <LoginPage />
+        <LoginPage loc={`question/${this.props.id}`} />
       )
     ) : (
       <NotFound />
